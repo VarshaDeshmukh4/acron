@@ -4,7 +4,7 @@
      }
  </script>
  <script>
-     import { loggedIn,paidAmount, DepartmentId, returnHome, eatModal, returnDept, eatState } from '../stores.js';
+     import { loggedIn,paidAmount, DepartmentId, returnHome, eatModal, returnDept, eatState,loginProcess } from '../stores.js';
      import { createEventDispatcher } from 'svelte';
      import { beforeUpdate, afterUpdate, onMount } from 'svelte';
      import router from "page"
@@ -48,6 +48,10 @@
        departments = departments;
        window.addEventListener('load', (event) => {
        myNewModalInstance = new BSN.Modal('#eatModal', { backdrop: true });
+       var myModal = document.getElementById('eatModal');
+        myModal.addEventListener('hidden.bs.modal', function(event){
+          loginProcess.set([]);
+  });
        });
        /*if ($returnDept ===  true) {
          returnDept.set(false);
